@@ -8,9 +8,12 @@ import { GrayTitle, SectionHeading, SectionLabel, SlateTitle } from "@/component
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { CheckoutButton } from "@clerk/nextjs/experimental";
 import { FEATURES, PLACEHOLDERS, STEPS, SUGGESTIONS } from "@/lib/data";
 import { ArrowRight ,Check,ChevronRight,Zap } from "lucide-react";
 import { PRICING_PLANS } from "@/lib/constants";
+import Link from "next/link";
+import { FaLinkedin, FaEnvelope, FaGlobe } from "react-icons/fa";
 
 export default function Home() {
   
@@ -507,12 +510,79 @@ export default function Home() {
         </div>
       </section>
 
+       {/* ── CTA ───────────────────────────────────────────────────────────── */}
+       <section className="mx-auto mb-32 max-w-5xl overflow-hidden rounded-2xl border border-white/8">
+  <StarsBackground className="px-10 py-24 text-center">
+    <div className="relative z-10">
+      <SectionHeading
+        gray="Start building,"
+        slate="for free."
+      />
 
-    
+      <p className="mx-auto mt-6 mb-8 max-w-md text-sm leading-relaxed text-white/40">
+        Get 10 free generations on sign up. No credit card required.
+        <br />
+        Upgrade when you're ready.
+      </p>
 
-      <footer className="relative z-10 border-t border-white/7 py-12 mx-auto px-6 flex flex-wrap items-center justify-center text-stone-400">
-        Made By Likith Raj H...
-      </footer>
+      {isSignedIn ? (
+        <Link href="/projects">
+          <Button
+            size="lg"
+            className="h-11 rounded-full bg-white px-8 text-black hover:bg-white/90"
+          >
+            Go to Projects
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
+      ) : (
+        <SignInButton mode="modal">
+          <Button
+            size="lg"
+            className="h-11 rounded-full bg-white px-8 text-black hover:bg-white/90"
+          >
+            Get started free
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </SignInButton>
+      )}
+    </div>
+  </StarsBackground>
+</section>
+
+
+
+<footer className="relative z-10 border-t border-white/7 py-10">
+  <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
+    <p className="text-sm text-white/45">
+      Designed & Developed by{" "}
+      <span className="font-medium text-white">Likith Raj H</span>
+    </p>
+
+    <div className="flex items-center gap-3">
+      <Link
+  href="https://www.linkedin.com/in/likithraj0465"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FaLinkedin className="h-5 w-5" />
+</Link>
+
+<Link
+  href="mailto:likithraj0465@gmail.com"
+>
+  <FaEnvelope className="h-5 w-5" />
+</Link>
+
+<Link
+  href="https://yourportfolio.com"
+  target="_blank"
+>
+  <FaGlobe className="h-5 w-5" />
+</Link>
+    </div>
+  </div>
+</footer>
 
     </main>
   );

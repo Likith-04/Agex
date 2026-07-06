@@ -21,7 +21,7 @@ import {
   Loader2,
   ArrowUp,
 } from "lucide-react";
-import { RingLoader } from "react-spinners";
+import { PropagateLoader } from "react-spinners";
 import JSZip from "jszip";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -398,7 +398,7 @@ root.render(<React.StrictMode><App /></React.StrictMode>);`
       <div className="relative flex-1 overflow-hidden h-full">
         {(isGenerating || isImproving) && (
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 bg-[#0a0a0a]/85 backdrop-blur-sm">
-            <RingLoader color="#60a5fa" size={64} speedMultiplier={0.8} />
+            <PropagateLoader color="#b5c0d7" loading size={20} speedMultiplier={0.8}/>
             <div className="flex flex-col items-center gap-1.5">
               <p className="text-sm font-medium text-white/60">
                 {isImproving ? "Improving with Cline AI…" : currentStepLabel}

@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { PricingModal } from "@/components/PricingModal";
 import type { Message, StatusStep } from "@/types/workspace";
 import { createClient } from "@supabase/supabase-js";
-import { BlueTitle } from "./reusables";
+import { SlateTitle } from "./reusables";
 import Image from "next/image";
 
 const supabase = createClient(
@@ -136,7 +136,7 @@ export function ChatPanel({
     <div className="flex w-[320px] shrink-0 flex-col bg-[#0d0d0d]">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-white/6 px-2 py-3">
-        <BlueTitle>{appTitle}</BlueTitle>
+        <SlateTitle>{appTitle}</SlateTitle>
         <PricingModal reason={noCredits ? "credits" : "upgrade"}>
           <span
             className={cn(
