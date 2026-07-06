@@ -1,6 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
-import { Agent, createTool } from "@cline/sdk";
+// Delay importing `@cline/sdk` until request time to avoid static
+// bundler export-analysis picking the browser build (which can
+// mismatch exports). We'll dynamically import inside the handler.
 import { z } from "zod";
 import { db } from "@/lib/prisma";
 import { CREDIT_COST_PER_GENERATION } from "@/lib/constants";
@@ -58,6 +60,11 @@ export async function POST(request: NextRequest) {
         ...fileData.files,
       };
       let finalSummary = "";
+
+      // Dynamically import the Cline SDK at request time to avoid
+      // build-time export resolution (Next can pick the browser build
+      // which may miss some server exports).
+      const { Agent, createTool } = await import("@cline/sdk");
 
       // ── Tool 1: update_file ──────────────────────────────────────────────
       // The agent calls this once per file it wants to change.
