@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
             .string()
             .describe("One sentence explaining what you changed and why"),
         }),
-        async execute({ path, code, reason }) {
+        async execute({ path, code, reason }: { path: string; code: string; reason: string }) {
           patchedFiles[path] = { code };
           // Emit live patch — client applies it to Sandpack immediately
           enqueue(sseEvent("file_patch", { path, code, reason }));
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
             ),
         }),
         lifecycle: { completesRun: true },
-        async execute({ summary }) {
+        async execute({ summary }: { summary: string }) {
           finalSummary = summary;
           return "Done.";
         },
