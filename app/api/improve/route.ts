@@ -171,13 +171,11 @@ RULES:
             if (name === "update_file") {
               const path =
                 (event.toolCall?.input as { path?: string })?.path ?? "a file";
-              enqueue(
-                sseEvent("thinking", { text: `\n\nUpdating ${path}...` })
-              );
+                  enqueue(
+                    sseEvent("thinking", { text: "\n\nUpdating " + path + "..." })
+                  );
             } else if (name === "done_improving") {
-              enqueue(
-                sseEvent("thinking", { text: "\n\nFinalizing improvements..." })
-              );
+                  enqueue(sseEvent("thinking", { text: "\n\nFinalizing improvements..." }));
             }
           }
         });
