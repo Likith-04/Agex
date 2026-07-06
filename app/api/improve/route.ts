@@ -160,7 +160,7 @@ RULES:`,
         // We emit these as "thinking" events — shown in the chat panel
         // as a live streaming message so users see the agent working.
 
-        agent.subscribe((event) => {
+        agent.subscribe((event: any) => {
           if (event.type === "assistant-text-delta" && event.text) {
             enqueue(sseEvent("thinking", { text: event.text }));
           }
