@@ -64,7 +64,8 @@ export async function POST(request: NextRequest) {
       // Dynamically import the Cline SDK at request time to avoid
       // build-time export resolution (Next can pick the browser build
       // which may miss some server exports).
-      const { Agent, createTool } = await import("@cline/sdk");
+        const clineSdkModule = await import(String("@cline/sdk"));
+        const { Agent, createTool } = clineSdkModule;
 
       // ── Tool 1: update_file ──────────────────────────────────────────────
       // The agent calls this once per file it wants to change.
@@ -145,10 +146,6 @@ WORKFLOW:
 4. Once all files are updated, call done_improving with a short summary.
 
 RULES:
-- Always write complete file contents — never partial snippets.
-- Keep all existing functionality unless asked to remove it.
-- The entry point is always /App.js with a default export.
-- All imports must reference files you've updated or packages in the available list above.`,
         tools: [updateFileTool, doneImprovingTool],
         // Auto-approve both tools — no human-in-the-loop needed in this context
         toolPolicies: {
