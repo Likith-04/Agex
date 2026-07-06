@@ -145,8 +145,8 @@ WORKFLOW:
 3. Call update_file for each file that needs changes (always include the COMPLETE file, not just the diff).
 4. Once all files are updated, call done_improving with a short summary.
 
-RULES:
-        tools: [updateFileTool, doneImprovingTool],
+RULES:`,
+  tools: [updateFileTool, doneImprovingTool],
         // Auto-approve both tools — no human-in-the-loop needed in this context
         toolPolicies: {
           update_file: { autoApprove: true },
